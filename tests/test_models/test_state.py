@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest module for the State Class."""
+"""Unittest module documentation for the State Class."""
 
 import unittest
 from datetime import datetime
@@ -15,25 +15,25 @@ from models.base_model import BaseModel
 
 class TestState(unittest.TestCase):
 
-    """Test Cases for the State class."""
+    """Test Cases for State class."""
 
     def setUp(self):
-        """Sets up test methods."""
+        """Set up test methods."""
         pass
 
     def tearDown(self):
-        """Tears down test methods."""
+        """Tear down test methods."""
         self.resetStorage()
         pass
 
     def resetStorage(self):
-        """Resets FileStorage data."""
+        """Reset FileStorage data."""
         FileStorage._FileStorage__objects = {}
         if os.path.isfile(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
 
     def test_8_instantiation(self):
-        """Tests instantiation of State class."""
+        """Instantiation of State class tests"""
 
         b = State()
         self.assertEqual(str(type(b)), "<class 'models.state.State'>")
@@ -41,7 +41,7 @@ class TestState(unittest.TestCase):
         self.assertTrue(issubclass(type(b), BaseModel))
 
     def test_8_attributes(self):
-        """Tests the attributes of State class."""
+        """Test the attributes of State class."""
         attributes = storage.attributes()["State"]
         o = State()
         for k, v in attributes.items():

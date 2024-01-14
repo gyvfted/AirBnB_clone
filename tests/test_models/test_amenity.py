@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest module for the Amenity Class."""
+"""Unittest module documentation for the Amenity Class."""
 
 import unittest
 from datetime import datetime
@@ -15,25 +15,25 @@ from models.base_model import BaseModel
 
 class TestAmenity(unittest.TestCase):
 
-    """Test Cases for the Amenity class."""
+    """Test Cases for Amenity class."""
 
     def setUp(self):
-        """Sets up test methods."""
+        """Set up test methods."""
         pass
 
     def tearDown(self):
-        """Tears down test methods."""
+        """Tear down test methods."""
         self.resetStorage()
         pass
 
     def resetStorage(self):
-        """Resets FileStorage data."""
+        """Reset FileStorage data."""
         FileStorage._FileStorage__objects = {}
         if os.path.isfile(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
 
     def test_8_instantiation(self):
-        """Tests instantiation of Amenity class."""
+        """Instantiation of Amenity class tests"""
 
         b = Amenity()
         self.assertEqual(str(type(b)), "<class 'models.amenity.Amenity'>")
@@ -41,7 +41,7 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue(issubclass(type(b), BaseModel))
 
     def test_8_attributes(self):
-        """Tests the attributes of Amenity class."""
+        """Test Amenity class attributes"""
         attributes = storage.attributes()["Amenity"]
         o = Amenity()
         for k, v in attributes.items():
