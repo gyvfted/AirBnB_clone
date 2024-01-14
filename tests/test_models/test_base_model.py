@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test suite for City class testing attributes, methods and ethinity"""
+"""Testdocumentationfor City class testing attributes, methods and ethinity"""
 from models.base_model import BaseModel
 import unittest
 import datetime
@@ -22,7 +22,7 @@ class test_basemodel(unittest.TestCase):
         pass
 
     def tearDown(self):
-        """Tears down test methods"""
+        """Removes test methods"""
         try:
             os.remove('file.json')
         except:
