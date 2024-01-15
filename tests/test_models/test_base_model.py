@@ -73,11 +73,10 @@ class TestBaseModel(unittest.TestCase):
         diff = b.created_at - date_now
         self.assertTrue(abs(diff.total_seconds()) < 0.1)
 
-    def test_3_id(self):
-        """Test for unique user ids."""
-
-        l = [BaseModel().id for i in range(1000)]
-        self.assertEqual(len(set(l)), len(l))
+    def test_unique_user_ids(self):
+        """Test for unique user IDs."""
+        generated_ids = [BaseModel().id for _ in range(1000)]
+        self.assertEqual(len(set(generated_ids)), len(generated_ids))
 
     def test_3_save(self):
         """Test the public instance method save()."""

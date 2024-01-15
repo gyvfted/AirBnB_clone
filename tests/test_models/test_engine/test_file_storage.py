@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Test suite documentstion for FileStorage class testing attributes, methods """
+"""Test suite documentation 4 FileStorage class testing attribute"""
 
 import unittest
 import os
