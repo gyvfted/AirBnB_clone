@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest module for the BaseModel Class."""
+"""Unittest module documentation for the BaseModel Class."""
 
 from models import storage
 from models.base_model import BaseModel
@@ -15,25 +15,25 @@ import uuid
 
 class TestBaseModel(unittest.TestCase):
 
-    """Test Cases for the BaseModel class."""
+    """Test Cases for BaseModel class."""
 
     def setUp(self):
-        """Sets up test methods."""
+        """Set up test methods."""
         pass
 
     def tearDown(self):
-        """Tears down test methods."""
+        """Tear down test methods."""
         self.resetStorage()
         pass
 
     def resetStorage(self):
-        """Resets FileStorage data."""
+        """Reset FileStorage data."""
         FileStorage._FileStorage__objects = {}
         if os.path.isfile(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
 
     def test_3_instantiation(self):
-        """Tests instantiation of BaseModel class."""
+        """Instantiation of BaseModel class tests"""
 
         b = BaseModel()
         self.assertEqual(str(type(b)), "<class 'models.base_model.BaseModel'>")
@@ -41,7 +41,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(issubclass(type(b), BaseModel))
 
     def test_3_init_no_args(self):
-        """Tests __init__ with no arguments."""
+        """Test __init__ with no arguments."""
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.__init__()
@@ -49,14 +49,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(e.exception), msg)
 
     def test_3_init_many_args(self):
-        """Tests __init__ with many arguments."""
+        """Test __init__ with many arguments."""
         self.resetStorage()
         args = [i for i in range(1000)]
         b = BaseModel(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
         b = BaseModel(*args)
 
     def test_3_attributes(self):
-        """Tests attributes value for instance of a BaseModel class."""
+        """Test attributes value for instance of a BaseModel class."""
 
         attributes = storage.attributes()["BaseModel"]
         o = BaseModel()
@@ -65,7 +65,7 @@ class TestBaseModel(unittest.TestCase):
             self.assertEqual(type(getattr(o, k, None)), v)
 
     def test_3_datetime_created(self):
-        """Tests if updated_at & created_at are current at creation."""
+        """Test if updated_at & created_at are current at creation."""
         date_now = datetime.now()
         b = BaseModel()
         diff = b.updated_at - b.created_at
@@ -74,13 +74,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(abs(diff.total_seconds()) < 0.1)
 
     def test_3_id(self):
-        """Tests for unique user ids."""
+        """Test for unique user ids."""
 
         l = [BaseModel().id for i in range(1000)]
         self.assertEqual(len(set(l)), len(l))
 
     def test_3_save(self):
-        """Tests the public instance method save()."""
+        """Test the public instance method save()."""
 
         b = BaseModel()
         time.sleep(0.5)
@@ -90,7 +90,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(abs(diff.total_seconds()) < 0.01)
 
     def test_3_str(self):
-        """Tests for __str__ method."""
+        """Test for __str__ method."""
         b = BaseModel()
         rex = re.compile(r"^\[(.*)\] \((.*)\) (.*)$")
         res = rex.match(str(b))
@@ -106,10 +106,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(d, d2)
 
     def test_3_to_dict(self):
-        """Tests the public instance method to_dict()."""
+        """Test the public instance method to_dict()."""
 
         b = BaseModel()
-        b.name = "Laura"
+        b.name = "Lau"
         b.age = 23
         d = b.to_dict()
         self.assertEqual(d["id"], b.id)
@@ -120,7 +120,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(d["age"], b.age)
 
     def test_3_to_dict_no_args(self):
-        """Tests to_dict() with no arguments."""
+        """Test to_dict() with no arguments."""
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.to_dict()
@@ -128,7 +128,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(e.exception), msg)
 
     def test_3_to_dict_excess_args(self):
-        """Tests to_dict() with too many arguments."""
+        """Test to_dict() with too many arguments."""
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.to_dict(self, 98)
@@ -136,17 +136,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(e.exception), msg)
 
     def test_4_instantiation(self):
-        """Tests instantiation with **kwargs."""
+        """Test instantiation with **kwargs."""
 
         my_model = BaseModel()
-        my_model.name = "Holberton"
+        my_model.name = "alx"
         my_model.my_number = 89
         my_model_json = my_model.to_dict()
         my_new_model = BaseModel(**my_model_json)
         self.assertEqual(my_new_model.to_dict(), my_model.to_dict())
 
     def test_4_instantiation_dict(self):
-        """Tests instantiation with **kwargs from custom dict."""
+        """Test instantiation with **kwargs from custom dict."""
         d = {"__class__": "BaseModel",
              "updated_at":
              datetime(2050, 12, 30, 23, 59, 59, 123456).isoformat(),
@@ -159,7 +159,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(o.to_dict(), d)
 
     def test_5_save(self):
-        """Tests that storage.save() is called from save()."""
+        """Test that storage.save() is called from save()."""
         self.resetStorage()
         b = BaseModel()
         b.save()
@@ -173,7 +173,7 @@ class TestBaseModel(unittest.TestCase):
             self.assertEqual(json.load(f), d)
 
     def test_5_save_no_args(self):
-        """Tests save() with no arguments."""
+        """Test save() with no arguments."""
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.save()
@@ -181,7 +181,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(e.exception), msg)
 
     def test_5_save_excess_args(self):
-        """Tests save() with too many arguments."""
+        """Test save() with too many arguments."""
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.save(self, 98)

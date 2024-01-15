@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest module for the City Class."""
+"""Unittest module documentation for the City Class."""
 
 import unittest
 from datetime import datetime
@@ -15,25 +15,25 @@ from models.base_model import BaseModel
 
 class TestCity(unittest.TestCase):
 
-    """Test Cases for the City class."""
+    """Test Cases for City class."""
 
     def setUp(self):
-        """Sets up test methods."""
+        """Set up test methods."""
         pass
 
     def tearDown(self):
-        """Tears down test methods."""
+        """Tear down test methods."""
         self.resetStorage()
         pass
 
     def resetStorage(self):
-        """Resets FileStorage data."""
+        """Reset FileStorage data."""
         FileStorage._FileStorage__objects = {}
         if os.path.isfile(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
 
     def test_8_instantiation(self):
-        """Tests instantiation of City class."""
+        """Instantiation of City class tests"""
 
         b = City()
         self.assertEqual(str(type(b)), "<class 'models.city.City'>")
@@ -41,7 +41,7 @@ class TestCity(unittest.TestCase):
         self.assertTrue(issubclass(type(b), BaseModel))
 
     def test_8_attributes(self):
-        """Tests the attributes of City class."""
+        """Test the City class attributes"""
         attributes = storage.attributes()["City"]
         o = City()
         for k, v in attributes.items():
